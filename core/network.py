@@ -6,8 +6,7 @@ from telegram import Update
 from telegram.ext import ContextTypes
 
 from core.utils import send_typing_action
-
-LOGIN = "Савинская З.Ю. (Системный программист)".encode("utf-8")
+from core.config import BASE_URL, LOGIN
 
 
 async def fetch_json_get(

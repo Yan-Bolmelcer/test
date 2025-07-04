@@ -6,12 +6,12 @@ from telegram.ext import ContextTypes
 
 from core.utils import send_typing_action, star
 from core.network import fetch_json_get, fetch_json_post, fetch_and_send_file
+from core.config import BASE_URL, LOGIN
 
 LEARN = "РаботаСоСтажерами"
 EXIT = "ExitИнтервью"
 INTERVIEW = "ИтогиСобеседования"
 FEEDBACK = "Feedback"
-BASE_URL = "https://dev1.arbis29.ru/ZUP_demo/hs/dataForBot"
 
 
 async def birthday(update: Update, context: ContextTypes.DEFAULT_TYPE):
