@@ -1,0 +1,6 @@
+python-telegram-bot
+fastapi
+requests
+python-dotenv
+pytest
+pytest-asyncio
