@@ -1,4 +1,5 @@
 import asyncio
+from functools import wraps
 from telegram.ext import ContextTypes
 from telegram import Update
 
@@ -8,16 +9,17 @@ async def send_typing_action(context: ContextTypes.DEFAULT_TYPE, chat_id: int, d
 
 def star(n):
     def decorate(fn):
+        @wraps(fn)
         async def wrapper(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if len(update.message.text.strip()) > n:
-                await inputError(update, context)
+                await inputError(update, context, n)
                 return
             await fn(update, context)
         return wrapper
     return decorate
 
-async def inputError(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def inputError(update: Update, context: ContextTypes.DEFAULT_TYPE, n: int):
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="Вы ввели слишком длинный запрос. Пожалуйста, сократите до 200 символов",
+        text=f"Вы ввели слишком длинный запрос. Пожалуйста, сократите до {n} символов",
     )
